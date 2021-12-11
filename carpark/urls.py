@@ -17,11 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from driver.views import DriverViewSet
-router_drivers = routers.DefaultRouter()
-router_drivers.register('driver', DriverViewSet)
+from vehicle.views import VehicleViewSet, VehicleSetDriverViewSet
+
+router_driver = routers.DefaultRouter()
+router_driver.register('driver', DriverViewSet)
+
+router_vehicle = routers.DefaultRouter()
+router_vehicle.register('vehicle', VehicleViewSet)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('drivers/', include(router_drivers.urls)),
-    # path('vehicles/', include('vehicle.urls')),
-    # path('drivers/', include('driver.urls'))
+    path('drivers/', include(router_driver.urls)),
+    path('vehicles/', include(router_vehicle.urls)),
+    path('vehicles/set_driver/<int:pk>', VehicleSetDriverViewSet.as_view({'post': 'set_driver'}), name="set-driver"),
 ]
