@@ -1,5 +1,5 @@
 #  Car Park
-This is test task for the Yalantis program. In this project we have created car park Rest API.
+This is backend for the carpark website. 
 ## Technologies
 The following technologies were used for this project:
 - Python 3.9
